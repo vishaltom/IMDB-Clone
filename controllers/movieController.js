@@ -54,3 +54,32 @@ exports.getMovieById = (req, res) => {
     }
   });
 };
+
+//Update Movie Details For Id
+exports.postMovieDetailsForId = (req, res) => {
+  const _id = req.params.id;
+  Movie.findByIdAndUpdate(
+    { _id },
+    {
+      Name: req.body.Name,
+      YearOfRelease: req.body.YearOfRelease,
+      Plot: req.body.Plot,
+      Actors: req.body.Actors,
+      Producer: req.body.Producer,
+    },
+    (err) => {
+      if (err) {
+        return res.status(200).json({
+          statusMessage: 'Error while updating movie details',
+          success: false,
+          error: err,
+        });
+      } else {
+        message = 'Movie details updated successfully';
+        return res
+          .status(200)
+          .json({ statusMessage: 'Success', success: true, data: message });
+      }
+    }
+  );
+};
