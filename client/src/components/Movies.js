@@ -14,6 +14,7 @@ function Movies() {
       fetchMovies();
       console.log(selectedMovieId);
       setRenderMovies(false);
+      setSelectedMovieId('');
     }
   }, [renderMovies]);
 

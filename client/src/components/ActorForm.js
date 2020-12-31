@@ -46,26 +46,19 @@ function ActorForm({ visibility, visibilityChange }) {
     handleReset();
     visibilityChange();
   }
-  function validateForm() {
+  function submitActorFormData() {
     if (actorName.length <= 0) {
       setErrorMessage(`Please enter the Actor's Name`);
-      return true;
+      setErrorStatus(true);
     } else if (actorDOB.length <= 0) {
       setErrorMessage('Please enter the date of birth');
-      return true;
+      setErrorStatus(true);
     } else if (actorGender.length <= 0) {
       setErrorMessage('Please enter the gender');
-      return true;
+      setErrorStatus(true);
+    } else {
+      insertActorData();
     }
-    console.log('Validation');
-    return false;
-  }
-  function submitActorFormData() {
-    const error = validateForm();
-    console.log(error);
-    setErrorStatus(error);
-    console.log(actorName, 'Before Insert');
-    if (!errorStatus) insertActorData();
   }
 
   if (visibility) {
